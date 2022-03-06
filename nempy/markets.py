@@ -3554,7 +3554,6 @@ class SpotMarket:
         Returns the marginal values of binding constraints (non-zero values).
         """
         marginal_vals = self._constraints_rhs_and_type['generic']
-        print(marginal_vals)
         nonzero_vals = marginal_vals[marginal_vals['marginal_value'] != 0]
         return nonzero_vals
 
