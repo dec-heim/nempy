@@ -2838,7 +2838,7 @@ class SpotMarket:
 
 
             # If there are generic constraints, calculate marginal values for generic constraints
-            if 'generic' in self._constraints_rhs_and_type.columns:
+            if 'generic' in self._constraints_rhs_and_type.keys():
                 constraints_to_price = list(self._constraints_rhs_and_type['generic']['constraint_id'])
                 prices = si.price_constraints(constraints_to_price)
                 self._constraints_rhs_and_type['generic']['marginal_value'] = \
