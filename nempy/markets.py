@@ -2884,12 +2884,12 @@ class SpotMarket:
                         self._market_constraints_rhs_and_type[constraint_group]['price'] = \
                             self._market_constraints_rhs_and_type[constraint_group]['constraint_id'].map(prices)
 
-            # If there are generic constraints, calculate marginal values for generic constraints
-            if self._constraints_rhs_and_type['generic']:
-                constraints_to_price = list(self._constraints_rhs_and_type['generic']['constraint_id'])
-                prices = si.price_constraints(constraints_to_price)
-                self._constraints_rhs_and_type['generic']['marginal_value'] = \
-                    self._constraints_rhs_and_type['generic']['constraint_id'].map(prices)
+        # If there are generic constraints, calculate marginal values for generic constraints
+        if self._constraints_rhs_and_type['generic']:
+            constraints_to_price = list(self._constraints_rhs_and_type['generic']['constraint_id'])
+            prices = si.price_constraints(constraints_to_price)
+            self._constraints_rhs_and_type['generic']['marginal_value'] = \
+                self._constraints_rhs_and_type['generic']['constraint_id'].map(prices)
             
     def _get_linear_model(self, si):
         self._remove_unused_interpolation_weights(si)
