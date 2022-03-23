@@ -2835,13 +2835,16 @@ class SpotMarket:
                 prices = si.price_constraints(constraints_to_price)
                 self._market_constraints_rhs_and_type[constraint_group]['price'] = \
                     self._market_constraints_rhs_and_type[constraint_group]['constraint_id'].map(prices)
-        
+                if constraint_group == 'generic':
+                    self._market_constraints_rhs_and_type[constraint_group]['marginal_value'] = \
+                    self._market_constraints_rhs_and_type[constraint_group]['constraint_id'].map(prices)
+
             # If there are generic constraints, calculate marginal values for generic constraints
-            if not self._constraints_rhs_and_type['generic'].empty:
-                constraints_to_price = list(self._constraints_rhs_and_type['generic']['constraint_id'])
-                prices = si.price_constraints(constraints_to_price)
-                self._constraints_rhs_and_type['generic']['marginal_value'] = \
-                    self._constraints_rhs_and_type['generic']['constraint_id'].map(prices)
+            #if not self._constraints_rhs_and_type['generic'].empty:
+                #constraints_to_price = list(self._constraints_rhs_and_type['generic']['constraint_id'])
+                #prices = si.price_constraints(constraints_to_price)
+                #self._constraints_rhs_and_type['generic']['marginal_value'] = \
+                    #self._constraints_rhs_and_type['generic']['constraint_id'].map(prices)
 
         if 'generic_deficit' in self._decision_variables and allow_over_constrained_dispatch_re_run:
             fcas_ceiling_price_violated = False
